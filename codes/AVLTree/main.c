@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct AVLnode * AVLTree;
+typedef struct AVLnode *AVLTree;
 
 struct AVLnode {
     int value;
@@ -54,7 +54,7 @@ AVLTree insert_node(int x, AVLTree T) {
             }
         }
     }
-    T->height = Max(height_tree(T->left),height_tree(T->right))+1;
+    T->height = Max(height_tree(T->left), height_tree(T->right)) + 1;
     return T;
 }
 
@@ -73,8 +73,8 @@ AVLTree single_transfer_right(AVLTree T) {
     K = T->right;
     T->right = K->left;
     K->left = T;
-    T->height = Max(height_tree(T->left),height_tree(T->right))+1;
-    K->height = Max(T->height,height_tree(K->right))+1;
+    T->height = Max(height_tree(T->left), height_tree(T->right)) + 1;
+    K->height = Max(T->height, height_tree(K->right)) + 1;
     return K;
 }
 
@@ -89,7 +89,6 @@ AVLTree single_transfer_left(AVLTree T) {
 }
 
 int Max(int a, int b) {
-
     return a > b ? a : b;
 }
 
@@ -100,23 +99,23 @@ int height_tree(AVLTree T) {
     return -1;
 }
 
-int main() {
-    AVLTree T=NULL;
-    for (int i = 0; i < 5; ++i) {
-        int x;
-        scanf("%d",&x);
-        T = insert_node(x,T); printAVLTree(T);printf("\n");
-    }
-    printAVLTree(T);
-//    printf("Hello, World!\n");
-    return 0;
-}
-
 void printAVLTree(AVLTree T) {
-    if (T!=NULL){
+    if (T != NULL) {
         printAVLTree(T->left);
-        printf(" %d ",T->value);
+        printf(" %d ", T->value);
         printAVLTree(T->right);
     }
+}
 
+int main() {
+    AVLTree T = NULL;
+    for (int i = 0; i < 5; ++i) {
+        int x;
+        scanf("%d", &x);
+        T = insert_node(x, T);
+        printAVLTree(T);
+        printf("\n");
+    }
+    printAVLTree(T);
+    return 0;
 }
